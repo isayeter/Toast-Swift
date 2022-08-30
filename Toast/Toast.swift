@@ -448,6 +448,9 @@ public extension UIView {
             imageRect.size.height = imageView.bounds.size.height
         }
 
+        let horizantalPaddingsWidth = style.horizontalPadding * (imageView != nil ? 2.0 : 1.0)
+        let verticalPaddingsHeight = style.verticalPadding * (imageView != nil ? 2.0 : 1.0)
+        
         if let title = title {
             titleLabel = UILabel()
             titleLabel?.numberOfLines = style.titleNumberOfLines
@@ -458,7 +461,7 @@ public extension UIView {
             titleLabel?.backgroundColor = UIColor.clear
             titleLabel?.text = title;
             
-            let maxTitleSize = CGSize(width: (self.bounds.size.width * style.maxWidthPercentage) - imageRect.size.width - (style.horizontalPadding * 2.0), height: (self.bounds.size.height * style.maxHeightPercentage) - (style.verticalPadding * 2.0))
+            let maxTitleSize = CGSize(width: (self.bounds.size.width * style.maxWidthPercentage) - imageRect.size.width - horizantalPaddingsWidth, height: (self.bounds.size.height * style.maxHeightPercentage) - verticalPaddingsHeight)
             let titleSize = titleLabel?.sizeThatFits(maxTitleSize)
             if let titleSize = titleSize {
                 let actualWidth = min(titleSize.width, maxTitleSize.width)
@@ -477,7 +480,7 @@ public extension UIView {
             messageLabel?.textColor = style.messageColor
             messageLabel?.backgroundColor = UIColor.clear
             
-            let maxMessageSize = CGSize(width: (self.bounds.size.width * style.maxWidthPercentage) - imageRect.size.width - (style.horizontalPadding * 2.0), height: (self.bounds.size.height * style.maxHeightPercentage) - (style.verticalPadding * 2.0))
+            let maxMessageSize = CGSize(width: (self.bounds.size.width * style.maxWidthPercentage) - imageRect.size.width - horizantalPaddingsWidth, height: (self.bounds.size.height * style.maxHeightPercentage) - verticalPaddingsHeight)
             let messageSize = messageLabel?.sizeThatFits(maxMessageSize)
             if let messageSize = messageSize {
                 let actualWidth = min(messageSize.width, maxMessageSize.width)
