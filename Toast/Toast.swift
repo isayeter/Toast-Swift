@@ -448,7 +448,7 @@ public extension UIView {
             imageRect.size.height = imageView.bounds.size.height
         }
 
-        let horizantalPaddingsWidth = (style.horizontalPadding * (imageView != nil ? 2.0 : 1.0)) + style.horizontalPaddingExtra
+        let horizantalPaddingsWidth = (style.horizontalPadding * (imageView != nil ? 2.0 : 1.0)) + (style.horizontalPaddingExtra * 2.0)
         let verticalPaddingsHeight = style.verticalPadding * (imageView != nil ? 2.0 : 1.0)
         
         if let title = title {
