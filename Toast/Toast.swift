@@ -448,7 +448,7 @@ public extension UIView {
             imageRect.size.height = imageView.bounds.size.height
         }
 
-        let horizantalPaddingsWidth = (style.horizontalPadding + style.horizontalPaddingExtra) * (imageView != nil ? 2.0 : 1.0)
+        let horizantalPaddingsWidth = (style.horizontalPadding * (imageView != nil ? 2.0 : 1.0)) + style.horizontalPaddingExtra
         let verticalPaddingsHeight = style.verticalPadding * (imageView != nil ? 2.0 : 1.0)
         
         if let title = title {
@@ -596,7 +596,7 @@ public struct ToastStyle {
     
     
     /**
-     The extra left spacing from the horizontal edge of the toast view to the image and labels.
+     The extra left-right  padding from the horizontal edge of the toast view to the image and labels.
      Default is 0.0.
     */
     public var horizontalPaddingExtra: CGFloat = 0.0
