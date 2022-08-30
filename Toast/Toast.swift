@@ -492,7 +492,7 @@ public extension UIView {
         var titleRect = CGRect.zero
         
         if let titleLabel = titleLabel {
-            titleRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding
+            titleRect.origin.x = (imageView != nil) ? (imageRect.origin.x + imageRect.size.width + style.horizontalPadding) : (style.horizontalPadding + style.horizontalPaddingExtra)
             titleRect.origin.y = style.verticalPadding
             titleRect.size.width = titleLabel.bounds.size.width
             titleRect.size.height = titleLabel.bounds.size.height
@@ -501,7 +501,7 @@ public extension UIView {
         var messageRect = CGRect.zero
         
         if let messageLabel = messageLabel {
-            messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding
+            messageRect.origin.x = (imageView != nil) ? (imageRect.origin.x + imageRect.size.width + style.horizontalPadding) : (style.horizontalPadding + style.horizontalPaddingExtra)
             messageRect.origin.y = titleRect.origin.y + titleRect.size.height + style.verticalPadding
             messageRect.size.width = messageLabel.bounds.size.width
             messageRect.size.height = messageLabel.bounds.size.height
