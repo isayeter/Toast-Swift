@@ -611,6 +611,11 @@ public struct ToastStyle {
     public var verticalPadding: CGFloat = 10.0
     
     /**
+     
+    */
+    public var verticalPaddingExtra: CGFloat = 0.0
+
+    /**
      The corner radius. Default is 10.0.
     */
     public var cornerRadius: CGFloat = 10.0;
@@ -766,8 +771,8 @@ public enum ToastPosition {
     case bottom
     
     fileprivate func centerPoint(forToast toast: UIView, inSuperview superview: UIView) -> CGPoint {
-        let topPadding: CGFloat = ToastManager.shared.style.verticalPadding + superview.csSafeAreaInsets.top
-        let bottomPadding: CGFloat = ToastManager.shared.style.verticalPadding + superview.csSafeAreaInsets.bottom
+        let topPadding: CGFloat = ToastManager.shared.style.verticalPadding + ToastManager.shared.style.verticalPaddingExtra + superview.csSafeAreaInsets.top
+        let bottomPadding: CGFloat = ToastManager.shared.style.verticalPadding + ToastManager.shared.style.verticalPaddingExtra + superview.csSafeAreaInsets.bottom
         
         switch self {
         case .top:
