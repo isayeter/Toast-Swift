@@ -436,19 +436,19 @@ public extension UIView {
         if let image = image {
             imageView = UIImageView(image: image)
             imageView?.contentMode = .scaleAspectFit
-            imageView?.frame = CGRect(x: style.horizontalPadding, y: style.verticalPadding, width: style.imageSize.width, height: style.imageSize.height)
+            imageView?.frame = CGRect(x: (style.horizontalPadding + style.horizontalPaddingExtra), y: style.verticalPadding, width: style.imageSize.width, height: style.imageSize.height)
         }
         
         var imageRect = CGRect.zero
         
         if let imageView = imageView {
-            imageRect.origin.x = style.horizontalPadding
+            imageRect.origin.x = style.horizontalPadding + style.horizontalPaddingExtra
             imageRect.origin.y = style.verticalPadding
             imageRect.size.width = imageView.bounds.size.width
             imageRect.size.height = imageView.bounds.size.height
         }
 
-        let horizantalPaddingsWidth = style.horizontalPadding * (imageView != nil ? 2.0 : 1.0)
+        let horizantalPaddingsWidth = (style.horizontalPadding + style.horizontalPaddingExtra) * (imageView != nil ? 2.0 : 1.0)
         let verticalPaddingsHeight = style.verticalPadding * (imageView != nil ? 2.0 : 1.0)
         
         if let title = title {
@@ -492,7 +492,7 @@ public extension UIView {
         var titleRect = CGRect.zero
         
         if let titleLabel = titleLabel {
-            titleRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding
+            titleRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding + style.horizontalPaddingExtra
             titleRect.origin.y = style.verticalPadding
             titleRect.size.width = titleLabel.bounds.size.width
             titleRect.size.height = titleLabel.bounds.size.height
@@ -501,7 +501,7 @@ public extension UIView {
         var messageRect = CGRect.zero
         
         if let messageLabel = messageLabel {
-            messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding
+            messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding + style.horizontalPaddingExtra
             messageRect.origin.y = titleRect.origin.y + titleRect.size.height + style.verticalPadding
             messageRect.size.width = messageLabel.bounds.size.width
             messageRect.size.height = messageLabel.bounds.size.height
@@ -509,7 +509,7 @@ public extension UIView {
         
         let longerWidth = max(titleRect.size.width, messageRect.size.width)
         let longerX = max(titleRect.origin.x, messageRect.origin.x)
-        let wrapperWidth = max((imageRect.size.width + (style.horizontalPadding * 2.0)), (longerX + longerWidth + style.horizontalPadding))
+        let wrapperWidth = max((imageRect.size.width + ((style.horizontalPadding + style.horizontalPaddingExtra) * 2.0)), (longerX + longerWidth + style.horizontalPadding + style.horizontalPaddingExtra))
         let wrapperHeight = max((messageRect.origin.y + messageRect.size.height + style.verticalPadding), (imageRect.size.height + (style.verticalPadding * 2.0)))
         
         wrapperView.frame = CGRect(x: 0.0, y: 0.0, width: wrapperWidth, height: wrapperHeight)
@@ -593,6 +593,14 @@ public struct ToastStyle {
      
     */
     public var horizontalPadding: CGFloat = 10.0
+    
+    
+    /**
+     The extra left spacing from the horizontal edge of the toast view to the image and labels.
+     Default is 0.0.
+    */
+    public var horizontalPaddingExtra: CGFloat = 0.0
+    
     
     /**
      The spacing from the vertical edge of the toast view to the content. When a title
