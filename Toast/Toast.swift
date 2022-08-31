@@ -422,6 +422,8 @@ public extension UIView {
         var imageView: UIImageView?
         
         let wrapperView = UIView()
+        wrapperView.tag = style.mainViewTag
+        
         wrapperView.backgroundColor = style.backgroundColor
         wrapperView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
         wrapperView.layer.cornerRadius = style.cornerRadius
@@ -550,6 +552,8 @@ public extension UIView {
 public struct ToastStyle {
 
     public init() {}
+    
+    public var mainViewTag = 32321
     
     /**
      The background color. Default is `.black` at 80% opacity.
